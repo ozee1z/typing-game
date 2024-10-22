@@ -22,6 +22,8 @@ const quoteElement = document.getElementById("quote");
 const messageElement = document.getElementById("message");
 const typedValueElement = document.getElementById("typed-value");
 const startButton = document.getElementById("start");
+const modalElement = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
 
 //Fucntion to start the typing game
 
@@ -53,6 +55,7 @@ startButton.addEventListener("click", () => {
     messageElement.innerText = "";
   
     // Setup the textbox
+    typedValueElement.disabled = false;
     // Clear the textbox
     typedValueElement.value = "";
 
@@ -82,10 +85,12 @@ typedValueElement.addEventListener("input", () => {
 
       // Calculate the speed in word per minute
       const speed = Math.floor((words.length / elapsedTime) * 60);
-      const message = `CONGRATULATIONS! You finished in ${elapsedTime} seconds. This is your speed ${speed} WPM.`;
-      messageElement.innerText = message;
+      const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. This is your speed ${speed} WPM.</p>`;
+      messageElement.innerHTML = message;
       quoteElement.innerHTML = "";
       typedValueElement.value = "";
+      typedValueElement.disabled = true;
+      modalElement.style.display = "block";
     } 
     else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
       // End of word
@@ -110,4 +115,19 @@ typedValueElement.addEventListener("input", () => {
       // Make the background color lightcoral to indicate wrong word
       typedValueElement.className = 'error';
     }
+  });
+
+  //close the modal when you click outside the modal content
+  modalElement.addEventListener("click", () => {
+  if (modalElement.style.display === "block") {
+      modalElement.style.display = "none"; // Hide the modal
+    } 
+  else {
+      modalElement.style.display = "block"; // Show the modal
+    }
+  });
+
+  //Close the modal when you click on the "x" symbol.
+  closeModal.addEventListener("click", ()=> {
+    modalElement.style.display = none;
   });

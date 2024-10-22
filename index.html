@@ -13,13 +13,19 @@
   <div class="container">
     <h1>Typing game!</h1>
     <p>Practice your typing skills with a quote from Sherlock Holmes. Click **start** to begin!</p>
-    <div class="quote-container"><p id="quote"></p></div> <!-- This will display our quote -->
-    <p id="message"></p> <!-- This will display any status messages -->
+    <div class="quote-container">
+      <p id="quote"></p> <!-- This will display the quote -->
+    </div>
+    <div id="modal" class="modal-parent">
+      <div class="messageModal">
+          <span id="closeModal" class="close">&times;</span>
+          <p id="message" class="successMessage"></p> <!-- This will display any status messages -->
+      </div>
+    </div>
     <div>
       <input type="text" id="typed-value" /> <!-- The textbox for typing -->
       <button type="button" id="start">Start</button> <!-- To start the game -->
     </div>
-  </div>
+</div>
 </body>
-
 </html>
