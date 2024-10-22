@@ -1,8 +1,22 @@
+.container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.quote-container {
+  margin: 0 auto;
+  width: 500px;
+}
+
 .highlight {
-    background-color: yellow;
-  }
-  
-  .error {
+  background-color: yellow;
+}
+
+.highlight-green {
+  color: green;
+}
+
+.error {
     background-color: lightcoral;
     border: red;
-  }
+}

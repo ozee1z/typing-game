@@ -18,39 +18,43 @@ let startTime;
 let timerStarted = false; // Tracks if the timer has started
 
 // Page elements
-const quoteElement = document.getElementById('quote');
-const messageElement = document.getElementById('message');
-const typedValueElement = document.getElementById('typed-value');
+const quoteElement = document.getElementById("quote");
+const messageElement = document.getElementById("message");
+const typedValueElement = document.getElementById("typed-value");
+const startButton = document.getElementById("start");
 
 //Fucntion to start the typing game
 
-document.getElementById('start').addEventListener('click', () => {
+startButton.addEventListener("click", () => {
+    // Reset the word index for tracking
+    wordIndex = 0;
+
+    // Reset timerStarted
+    timerStarted = false;
+
     // Get a quote
     const quoteIndex = Math.floor(Math.random() * quotes.length);
     const quote = quotes[quoteIndex];
 
     // Put the quote into an array of words
-    words = quote.split(' ');
-
-    // Reset the word index for tracking
-    wordIndex = 0;
+    words = quote.split(" ");
   
     // UI updates
     // Create an array of span elements so we can set a class
     const spanWords = words.map(function(word) { return `<span>${word}</span>`});
 
     // Convert into string and set as innerHTML on quote display
-    quoteElement.innerHTML = spanWords.join(' ');
+    quoteElement.innerHTML = spanWords.join(" ");
 
     // Highlight the first word
-    quoteElement.children[wordIndex].className = 'highlight';
+    quoteElement.children[wordIndex].className = "highlight";
 
     // Clear any prior messages
-    messageElement.innerText = '';
+    messageElement.innerText = "";
   
     // Setup the textbox
     // Clear the textbox
-    typedValueElement.value = '';
+    typedValueElement.value = "";
 
     // set focus
     typedValueElement.focus();
@@ -58,7 +62,7 @@ document.getElementById('start').addEventListener('click', () => {
 
 // Function when the player starts typing
 
-typedValueElement.addEventListener('input', () => {
+typedValueElement.addEventListener("input", () => {
     // Get the current word
     const currentWord = words[wordIndex];
 
@@ -80,28 +84,30 @@ typedValueElement.addEventListener('input', () => {
       const speed = Math.floor((words.length / elapsedTime) * 60);
       const message = `CONGRATULATIONS! You finished in ${elapsedTime} seconds. This is your speed ${speed} WPM.`;
       messageElement.innerText = message;
+      quoteElement.innerHTML = "";
+      typedValueElement.value = "";
     } 
-    else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
+    else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
       // End of word
       // Clear the typedValueElement for the new word
-      typedValueElement.value = '';
+      typedValueElement.value = "";
+
+      // Highlight previous word light green to indicate that it's correct
+      quoteElement.children[wordIndex].className = "highlight-green";
 
       // Move to the next word
       wordIndex++;
 
-      // Reset the class name for all elements in quote
-      for (let wordElement of quoteElement.children) {
-        wordElement.className = '';
+      if (wordIndex < quoteElement.children.length) {
+        quoteElement.children[wordIndex].className = "highlight";
       }
-      // Highlight the new word
-      quoteElement.children[wordIndex].className = 'highlight';
     } 
     else if (currentWord.startsWith(typedValue)) {
-      // Currently correct
-      // Highlight the next word
-      typedValueElement.className = '';
-    } else {
-      // Error state
+      // Currently correct, don't apply class name to the input element
+      typedValueElement.className = "";
+    } 
+    else {
+      // Make the background color lightcoral to indicate wrong word
       typedValueElement.className = 'error';
     }
   });
