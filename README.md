@@ -1,0 +1,1 @@
+Learned about event listeners, and created a typing game practicing what I have learned.
