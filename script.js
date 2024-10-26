@@ -129,5 +129,5 @@ typedValueElement.addEventListener("input", () => {
 
   //Close the modal when you click on the "x" symbol.
   closeModal.addEventListener("click", ()=> {
-    modalElement.style.display = none;
+    modalElement.style.display = "none";
   });
