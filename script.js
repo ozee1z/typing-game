@@ -113,13 +113,13 @@ typedValueElement.addEventListener("input", () => {
     } 
     else {
       // Make the background color lightcoral to indicate wrong word
-      typedValueElement.className = 'error';
+      typedValueElement.className = "error";
     }
   });
 
-  //close the modal when you click outside the modal content
-  modalElement.addEventListener("click", () => {
-  if (modalElement.style.display === "block") {
+  //close the modal when you click outside the modal content and check if the click target is the modal itself
+  modalElement.addEventListener("click", (event) => {
+  if (modalElement.style.display === "block" && event.target === modalElement) {
       modalElement.style.display = "none"; // Hide the modal
     } 
   else {
