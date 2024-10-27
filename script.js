@@ -85,7 +85,7 @@ typedValueElement.addEventListener("input", () => {
 
       // Calculate the speed in word per minute
       const speed = Math.floor((words.length / elapsedTime) * 60);
-      const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. This is your speed ${speed} WPM.</p>`;
+      const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. This is your typing speed ${speed} WPM.</p>`;
       messageElement.innerHTML = message;
       quoteElement.innerHTML = "";
       typedValueElement.value = "";
@@ -117,14 +117,11 @@ typedValueElement.addEventListener("input", () => {
     }
   });
 
-  //close the modal when you click outside the modal content and check if the click target is the modal itself
+  //Close the modal when you click outside the modal content
   modalElement.addEventListener("click", (event) => {
-  if (modalElement.style.display === "block" && event.target === modalElement) {
+  if (event.target === modalElement) {
       modalElement.style.display = "none"; // Hide the modal
     } 
-  else {
-      modalElement.style.display = "block"; // Show the modal
-    }
   });
 
   //Close the modal when you click on the "x" symbol.
