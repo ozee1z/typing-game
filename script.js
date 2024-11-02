@@ -85,7 +85,7 @@ typedValueElement.addEventListener("input", () => {
 
       // Calculate the speed in word per minute
       const speed = Math.floor((words.length / elapsedTime) * 60);
-      const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. This is your typing speed ${speed} WPM.</p>`;
+      const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. Your typing speed is ${speed} WPM.</p>`;
       messageElement.innerHTML = message;
       quoteElement.innerHTML = "";
       typedValueElement.value = "";
