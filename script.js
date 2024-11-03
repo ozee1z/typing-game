@@ -17,6 +17,9 @@ let wordIndex = 0;
 let startTime;
 let timerStarted = false; // Tracks if the timer has started
 
+//Speed in wpm
+let speed;
+
 // Page elements
 const quoteElement = document.getElementById("quote");
 const messageElement = document.getElementById("message");
@@ -24,6 +27,7 @@ const typedValueElement = document.getElementById("typed-value");
 const startButton = document.getElementById("start");
 const modalElement = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
+const highScoreTable = document.getElementById("highScoresTable");
 
 //Fucntion to start the typing game
 
@@ -61,6 +65,9 @@ startButton.addEventListener("click", () => {
 
     // set focus
     typedValueElement.focus();
+
+    // Hide high score table
+    highScoreTable.style.display = "none";
   });
 
 // Function when the player starts typing
@@ -84,13 +91,15 @@ typedValueElement.addEventListener("input", () => {
       const elapsedTime = (new Date().getTime() - startTime) / 1000;
 
       // Calculate the speed in word per minute
-      const speed = Math.floor((words.length / elapsedTime) * 60);
+      speed = Math.floor((words.length / elapsedTime) * 60);
       const message = `<p>CONGRATULATIONS!</p> <p>You finished in ${elapsedTime} seconds. Your typing speed is ${speed} WPM.</p>`;
       messageElement.innerHTML = message;
       quoteElement.innerHTML = "";
       typedValueElement.value = "";
       typedValueElement.disabled = true;
       modalElement.style.display = "block";
+      saveSocre(speed);
+      getHighScore();
     } 
     else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
       // End of word
@@ -128,3 +137,27 @@ typedValueElement.addEventListener("input", () => {
   closeModal.addEventListener("click", ()=> {
     modalElement.style.display = "none";
   });
+
+//Local storage to store highscores
+function saveSocre(wpm) {
+  let score = JSON.parse(localStorage.getItem("highScore")) || [];;
+  score.push(wpm);
+  score.sort((a,b) => {
+    return b - a;
+  });
+  score = score.slice(0, 10);
+  localStorage.setItem("highScore",JSON.stringify(score));
+}
+
+function getHighScore() {
+  let highScore = JSON.parse(localStorage.getItem("highScore")) || [];
+  const highScoresBody = document.getElementById("highScoresBody");
+  highScoresBody.innerHTML = highScore.map(function(hscore, index){
+    return `<tr>
+                <td>${index + 1}</td>
+                <td>${hscore}</td>
+              </tr>
+            `
+  }).join("");
+  highScoreTable.style.display = "block";
+};
