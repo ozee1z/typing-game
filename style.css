@@ -63,3 +63,18 @@
     cursor: pointer;
     font-weight: bolder;
 }
+
+.highScoreStyle {
+  display: none;
+  width: 100%;               
+  border-collapse: collapse; 
+  margin: 50px auto;            
+  text-align: center;       
+}
+
+.highScoreStyle th,
+.highScoreStyle td {
+    padding: 10px;             /* Add padding for spacing */
+    border: 1px solid #ddd;    /* Add borders for clarity */
+}
+
