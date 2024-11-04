@@ -28,6 +28,7 @@ const startButton = document.getElementById("start");
 const modalElement = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 const highScoreTable = document.getElementById("highScoresTable");
+const clearHighScore = document.getElementById("clearScore");
 
 //Fucntion to start the typing game
 
@@ -161,3 +162,9 @@ function getHighScore() {
   }).join("");
   highScoreTable.style.display = "block";
 };
+
+//Clear high score
+clearHighScore.addEventListener("click", ()=> {
+  localStorage.clear();
+  highScoreTable.style.display = "none";
+})
