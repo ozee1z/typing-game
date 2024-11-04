@@ -28,6 +28,7 @@ const startButton = document.getElementById("start");
 const modalElement = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 const highScoreTable = document.getElementById("highScoresTable");
+const clearHighScore = document.getElementById("clearScore");
 
 //Fucntion to start the typing game
 
@@ -98,7 +99,7 @@ typedValueElement.addEventListener("input", () => {
       typedValueElement.value = "";
       typedValueElement.disabled = true;
       modalElement.style.display = "block";
-      saveSocre(speed);
+      saveScore(speed);
       getHighScore();
     } 
     else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
@@ -139,7 +140,7 @@ typedValueElement.addEventListener("input", () => {
   });
 
 //Local storage to store highscores
-function saveSocre(wpm) {
+function saveScore(wpm) {
   let score = JSON.parse(localStorage.getItem("highScore")) || [];;
   score.push(wpm);
   score.sort((a,b) => {
@@ -161,3 +162,9 @@ function getHighScore() {
   }).join("");
   highScoreTable.style.display = "block";
 };
+
+//Clear high score
+clearHighScore.addEventListener("click", ()=> {
+  localStorage.clear();
+  highScoreTable.style.display = "none";
+})
