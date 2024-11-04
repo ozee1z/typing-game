@@ -98,7 +98,7 @@ typedValueElement.addEventListener("input", () => {
       typedValueElement.value = "";
       typedValueElement.disabled = true;
       modalElement.style.display = "block";
-      saveSocre(speed);
+      saveScore(speed);
       getHighScore();
     } 
     else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
@@ -139,7 +139,7 @@ typedValueElement.addEventListener("input", () => {
   });
 
 //Local storage to store highscores
-function saveSocre(wpm) {
+function saveScore(wpm) {
   let score = JSON.parse(localStorage.getItem("highScore")) || [];;
   score.push(wpm);
   score.sort((a,b) => {
