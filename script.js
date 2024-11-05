@@ -167,7 +167,7 @@ function getHighScore() {
 //show clear highScoreButton if high score length === 10
 function highScoreLength() {
   let getHighScoreLength = JSON.parse(localStorage.getItem("highScore"));
-  if(getHighScoreLength.length >= 2){
+  if(getHighScoreLength.length === 10){
     clearHighScore.style.display = "inline";
   }
 };
