@@ -101,6 +101,7 @@ typedValueElement.addEventListener("input", () => {
       modalElement.style.display = "block";
       saveScore(speed);
       getHighScore();
+      highScoreLength();
     } 
     else if (typedValue.endsWith(" ") && typedValue.trim() === currentWord) {
       // End of word
@@ -163,8 +164,17 @@ function getHighScore() {
   highScoreTable.style.display = "block";
 };
 
+//show clear highScoreButton if high score length === 10
+function highScoreLength() {
+  let getHighScoreLength = JSON.parse(localStorage.getItem("highScore"));
+  if(getHighScoreLength.length >= 2){
+    clearHighScore.style.display = "inline";
+  }
+};
+
 //Clear high score
 clearHighScore.addEventListener("click", ()=> {
   localStorage.clear();
   highScoreTable.style.display = "none";
-})
+  clearHighScore.style.display = "none";
+});
