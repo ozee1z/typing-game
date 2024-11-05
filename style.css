@@ -78,3 +78,7 @@
     border: 1px solid #ddd;    /* Add borders for clarity */
 }
 
+.clearScoreBtn {
+  display: none;
+}
+
