@@ -158,6 +158,7 @@ function getHighScore() {
     return `<tr>
                 <td>${index + 1}</td>
                 <td>${hscore}</td>
+                <td></td>
               </tr>
             `
   }).join("");
