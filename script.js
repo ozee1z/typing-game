@@ -142,26 +142,46 @@ typedValueElement.addEventListener("input", () => {
 
 //Local storage to store highscores
 function saveScore(wpm) {
-  let score = JSON.parse(localStorage.getItem("highScore")) || [];;
-  score.push(wpm);
-  score.sort((a,b) => {
-    return b - a;
-  });
-  score = score.slice(0, 10);
-  localStorage.setItem("highScore",JSON.stringify(score));
+  let score = JSON.parse(localStorage.getItem("highScore")) || [];
+
+  // Save the score along with the current timestamp
+  let scoreWithTimestamp = { score: wpm, timestamp: new Date().toISOString() };
+
+  score.push(scoreWithTimestamp);
+  score.sort((a, b) => b.score - a.score); // Sort by score in descending order
+  score = score.slice(0, 10); // Keep only the top 10 scores
+
+  localStorage.setItem("highScore", JSON.stringify(score));
 }
+
 
 function getHighScore() {
   let highScore = JSON.parse(localStorage.getItem("highScore")) || [];
   const highScoresBody = document.getElementById("highScoresBody");
-  highScoresBody.innerHTML = highScore.map(function(hscore, index){
+
+  // Render high scores in the table
+  highScoresBody.innerHTML = highScore.map(function (entry, index) {
+    // Parse the timestamp
+    let time = new Date(entry.timestamp); // Use the stored timestamp for each score
+    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let day = time.getDay();
+    let today = daysOfWeek[day];
+    let dateNTime = time.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",   
+      year: "numeric",  
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+
     return `<tr>
                 <td>${index + 1}</td>
-                <td>${hscore}</td>
-                <td></td>
-              </tr>
-            `
+                <td>${entry.score}</td>
+                <td>${today} ${dateNTime}</td>
+              </tr>`;
   }).join("");
+
   highScoreTable.style.display = "block";
 };
 
