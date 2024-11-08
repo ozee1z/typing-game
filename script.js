@@ -145,7 +145,7 @@ function saveScore(wpm) {
   let score = JSON.parse(localStorage.getItem("highScore")) || [];
 
   // Save the score along with the current timestamp
-  let scoreWithTimestamp = { score: wpm, timestamp: new Date().toISOString() };
+  let scoreWithTimestamp = {score: wpm, timestamp: new Date().toLocaleString()};
 
   score.push(scoreWithTimestamp);
   score.sort((a, b) => b.score - a.score); // Sort by score in descending order
