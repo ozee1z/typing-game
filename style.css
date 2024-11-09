@@ -1,3 +1,7 @@
+body {
+  background-color: #D9EEF3;
+}
+
 .container {
   text-align: center;
   margin: 0 auto;
@@ -7,6 +11,13 @@
   margin: 0 auto;
   width: 500px;
   text-align: left;
+  background-color: white;
+  padding: 2px 15px;
+  border-radius: 5px;
+}
+
+.typingContainer {
+  margin-top: 10px;
 }
 
 .highlight {
@@ -74,8 +85,9 @@
 
 .highScoreStyle th,
 .highScoreStyle td {
-    padding: 10px;             /* Add padding for spacing */
+    padding: 20px;             /* Add padding for spacing */
     border: 1px solid #ddd;    /* Add borders for clarity */
+    background-color: white;
 }
 
 .clearScoreBtn {
