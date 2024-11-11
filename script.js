@@ -199,3 +199,8 @@ clearHighScore.addEventListener("click", ()=> {
   highScoreTable.style.display = "none";
   clearHighScore.style.display = "none";
 });
+
+//How many times the page is been seen
+function loadedTimes() {
+  
+};
