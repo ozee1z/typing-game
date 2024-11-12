@@ -201,6 +201,6 @@ clearHighScore.addEventListener("click", ()=> {
 });
 
 //How many times the page is been seen
-function loadedTimes() {
-  
-};
+document.addEventListener("DOMContentLoaded", (event) => {
+  console.log("DOM fully loaded and parsed");
+});
