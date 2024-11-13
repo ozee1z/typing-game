@@ -199,8 +199,3 @@ clearHighScore.addEventListener("click", ()=> {
   highScoreTable.style.display = "none";
   clearHighScore.style.display = "none";
 });
-
-//How many times the page is been seen
-document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("DOM fully loaded and parsed");
-});
