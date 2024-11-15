@@ -65,6 +65,9 @@ startButton.addEventListener("click", () => {
     //Clear the textbox
     typedValueElement.value = "";
 
+    //Don't apply background color
+    typedValueElement.className = "";
+
     //Set focus
     typedValueElement.focus();
 
